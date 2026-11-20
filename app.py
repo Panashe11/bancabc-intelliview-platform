@@ -139,7 +139,7 @@ st.markdown(
         background-color: #10386E !important;
     }
 
-    /* Multiselect, text input & download buttons */
+    /* Multiselect / Selectbox Input Box */
     div[data-baseweb="select"] > div,
     input[type="text"] {
         background-color: #0B2952 !important;
@@ -148,6 +148,52 @@ st.markdown(
         font-size: 15px !important;
         font-weight: 600 !important;
     }
+    div[data-baseweb="select"] input,
+    div[data-baseweb="select"] div {
+        color: #FFFFFF !important;
+    }
+
+    /* Selected items (chips/tags) inside City / Branch Hub & Segment selectors */
+    span[data-baseweb="tag"] {
+        background-color: #005596 !important;
+        border: 1.5px solid #F59E0B !important;
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        border-radius: 8px !important;
+    }
+    span[data-baseweb="tag"] span,
+    span[data-baseweb="tag"] svg {
+        color: #FFFFFF !important;
+        fill: #FFFFFF !important;
+    }
+
+    /* Dropdown Menu Listbox when clicked (fixes white-on-white visibility) */
+    div[data-baseweb="popover"],
+    div[data-baseweb="popover"] > div,
+    ul[role="listbox"],
+    div[role="listbox"] {
+        background-color: #061B3A !important;
+        border: 1.5px solid #3B82F6 !important;
+        border-radius: 10px !important;
+    }
+    li[role="option"],
+    div[role="option"] {
+        background-color: #061B3A !important;
+        color: #FFFFFF !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        padding: 10px 14px !important;
+    }
+    li[role="option"]:hover,
+    div[role="option"]:hover,
+    li[aria-selected="true"],
+    div[aria-selected="true"] {
+        background-color: #005596 !important;
+        color: #FCD34D !important;
+        font-weight: 800 !important;
+    }
+
+    /* Download button */
     .stDownloadButton > button {
         background-color: #005596 !important;
         color: #FFFFFF !important;
