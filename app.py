@@ -17,6 +17,15 @@ SCORED_DATA_PATH = (
     else LOCAL_PATH
 )
 
+HUB_NAME_MAP = {
+    "501": "Harare Main",
+    "504": "Samora Machel (Harare)",
+    "511": "Borrowdale (Harare)",
+    "517": "Bulawayo Main",
+    "523": "Mutare",
+    "529": "Gweru",
+}
+
 st.markdown(
     """
     <style>
@@ -68,7 +77,16 @@ st.markdown(
 
 @st.cache_data
 def load_data(path: str) -> pd.DataFrame:
-    return pd.read_csv(path, low_memory=False)
+    data = pd.read_csv(path, low_memory=False)
+    if "branch_hub" in data.columns:
+        data["branch_hub"] = (
+            data["branch_hub"]
+            .astype(str)
+            .str.replace(r"\.0$", "", regex=True)
+            .str.strip()
+            .replace(HUB_NAME_MAP)
+        )
+    return data
 
 
 if not os.path.exists(SCORED_DATA_PATH):
@@ -332,7 +350,7 @@ elif nav_page == "📈 Early Behaviour & XAI":
 elif nav_page == "🎯 Cross-Sell & Priority":
     st.subheader("🎯 Prioritized Cross-Sell & Next-Best-Action Queue")
     cols = [
-        "priority_rank", "customer_id", "customer_segment", "inflow_tier",
+        "priority_rank", "customer_id", "branch_hub", "customer_segment", "inflow_tier",
         "currency_group", "risk_category", "cross_sell_eligible",
         "cross_sell_target", "cross_sell_reason", "priority_score"
     ]
